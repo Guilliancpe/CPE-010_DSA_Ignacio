@@ -89,7 +89,10 @@ void dllInsertHead(T newData, doublelist<T>** currentHead){
 template <typename T>
 void dllGeneralInsertion(T newData, doublelist<T>* prev){
     
-
+    if (prev == nullptr){
+        std::cout << "The Previous node cannot be null." << std::endl;
+        return;
+    }
     //NODE ALLOCATION
     doublelist<T>* newNode = new_Node(newData);
     //store data inside new node
