@@ -26,9 +26,9 @@ void enqueue(qnode<T>** frontptr, qnode<T>** backptr, T newData){
     qnode<T>* newNode = new_Node(newData);
 
     if ((*frontptr) == nullptr && (*backptr) == nullptr){
-    //inserting to an empty queue
-    (*frontptr) = newNode;
-    (*backptr) = newNode;
+        //inserting to an empty queue
+        (*frontptr) = newNode;
+        (*backptr) = newNode;
     }
 
     //inserting to a non empty queue
@@ -65,7 +65,7 @@ void dequeue(qnode<T>** frontptr, qnode<T>** backptr){
 
 template <typename T>
 void Display(qnode<T>** frontptr, qnode<T>** backptr){
-    //check if front and back is empty
+    //check if front and back is not empty
     if((*frontptr) != nullptr && (*backptr) != nullptr){
         std::cout << " " <<  (*frontptr)->data << " " << (*frontptr)->next->data << " " << (*backptr)->data << std::endl;
     }
