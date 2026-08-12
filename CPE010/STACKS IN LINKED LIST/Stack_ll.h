@@ -1,81 +1,90 @@
 #ifndef STACK_LL_H
 #define STACK_LL_H
 
+#include <iostream>
+
 template <typename T>
 class Sllnodes {
-    public:
+public:
     T data;
-    Sllnodes<T>* next = nullptr;
+    Sllnodes<T>* next;
+
+    Sllnodes() {
+        next = nullptr;
+    }
 };
 
+// Create a new node
 template <typename T>
-Sllnodes<T>* new_Node(T newData){
-    //Dynamic allocation for a new node
+Sllnodes<T>* new_Node(T newData) {
     Sllnodes<T>* newNode = new Sllnodes<T>;
-    newNode->data = newData;
 
-    //Point it to null after
+    newNode->data = newData;
     newNode->next = nullptr;
+
     return newNode;
 }
 
-
+// Head of the stack
 template <typename T>
 Sllnodes<T>* head = nullptr;
 
-//push
+// Push
 template <typename T>
-void push(T newData){
-  Sllnodes<T>* newNode = new Sllnodes<T>;
+void push(T newData) {
+    Sllnodes<T>* newNode = new Sllnodes<T>;
 
+    newNode->data = newData;
 
-   newNode->data = newData;
+    // New node points to current top
+    newNode->next = head<T>;
 
-   //points to the current top and becomes the new top
-   newNode->next = head<T>;
-   head<T> = newNode;
+    // New node becomes the top
+    head<T> = newNode;
 }
 
-//pop
+// Pop
 template <typename T>
-T pop(){
+T pop() {
 
-
-    if(head<T> == nullptr){
-        std::cout << "Stack undeflow.";
+    if (head<T> == nullptr) {
+        std::cout << "Stack underflow." << std::endl;
+        return T();
     }
-    //save the current top node
+
+    // Save current top node
     Sllnodes<T>* temp = head<T>;
-    //store its data
+
+    // Store its data
     T tempVal = temp->data;
-    //move the head to the next node
+
+    // Move head to next node
     head<T> = head<T>->next;
-    //free the removed data
+
+    // Delete removed node
     delete temp;
-    //return the removed value
+
+    // Return removed value
     return tempVal;
+}
 
-};
-
-//isEmpty
+// Is Empty
 template <typename T>
-bool IsEmpty(){
+bool IsEmpty() {
     return head<T> == nullptr;
+}
 
-};
-
-//top
+// Top
 template <typename T>
-void top(){
-    //Create an error catching
-    if (head<T> == nullptr){
-        std::cout << "Stack underflow.";
+void top() {
+
+    if (head<T> == nullptr) {
+        std::cout << "Stack underflow." << std::endl;
         return;
     }
 
-    std::cout << "\n The element at the top of the stack is \n" << head<T>->data << std::endl;
-};
-
-
+    std::cout << "The element at the top of the stack is: "
+              << head<T>->data << std::endl;
+}
 
 #endif
